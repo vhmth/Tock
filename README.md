@@ -127,6 +127,26 @@ destroy on it. This will additionally unwind all clocks it owns.
     Tock.destroy();
     Tock // undefined
 
+Tock Console Prints
+===================
+
+Since Tock was made with the developer in mind, using tock.js offers useful console prints indicating
+when the following events occur:
+
+1.) When a clock has been successfully wound up. (log)
+
+2.) When a clock has been successfully unwound. (log)
+
+3.) When a clock is not owned by Tock and an unwind was attempted. (warn)
+
+4.) When a clock's function has been fired. (log)
+
+5.) When an id is undefined or the empty string when a wind was attempted. (error)
+
+6.) When an id already has a clock associated with it and a wind was attempted. (warn)
+
+The minified version of Tock does not contain these console prints.
+
 Version
 =======
 
