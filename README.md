@@ -154,3 +154,18 @@ Tock may be updated in the future. To figure out which version of Tock you have,
 current version is 0.1.
 
     Tock.version(); // '0.1'
+
+Disclaimer
+==========
+
+Tock works pretty well and is accurate enough for most peoples' needs, but there may be moments when the
+number of seconds left for a clock to finish running is off by a second or so. This is to be
+expected, since, internally, Tock measures the amount of time a timeout or interval has been running by
+using an interval itself. Since javascript is a single-threaded language, this can lead to slight discrepencies.
+
+Future Plans
+============
+
+I plan on adding a way to wind and unwind multiple clocks at once by passing in an object literal. Hang
+tight for that if you're waiting on it (see inflate and deflate in my Balloon repo to get a sense
+for what I'm talking about).
