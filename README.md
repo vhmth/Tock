@@ -10,7 +10,7 @@ Winding
 
 To wind a clock (set an interval or timeout), you need only follow two steps:
 
-1.) Include tock.js before calling anything on the global Tock object.
+1.) Include tock.js (or tock.min.js) before calling anything on the global Tock object.
 
 2.) Call Tock.wind or Tock.windInterval.
 
