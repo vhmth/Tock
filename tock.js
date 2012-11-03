@@ -1,5 +1,6 @@
 (function () {
 	var
+	    VER = '0.1',
 		Tock,
 		jeeves,
 		clockShop = {},
@@ -56,6 +57,14 @@
 
 	Tock = {
 		wind: function (fn, wait, id, context) {
+			if (id === undefined || id === '') {
+				console.error('You must specify a valid id when calling wind.');
+				return;
+			}
+			if (clockShop[id] !== undefined) {
+				console.warn('This id already has a clock associated with it.');
+				return;
+			}
 			if (context !== undefined) {
 				fn = fn.bind(context);
 			}
@@ -87,6 +96,14 @@
 		},
 
 		windInterval: function (fn, wait, id, context) {
+			if (id === undefined || id === '') {
+				console.error('You must specify a valid id when calling windInterval.');
+				return;
+			}
+			if (clockShop[id] !== undefined) {
+				console.warn('This id already has a clock associated with it.');
+				return;
+			}
 			if (context !== undefined) {
 				fn = fn.bind(context);
 			}
@@ -173,6 +190,10 @@
 		destroy: function () {
 			this.unwindAll();
 			delete window.Tock;
+		},
+
+		version: function () {
+			return VER;
 		}
 	};
 
