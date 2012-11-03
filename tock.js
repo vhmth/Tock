@@ -1,4 +1,4 @@
-(function () {
+(function (exports) {
 	var
 	    VER = '0.1',
 		Tock,
@@ -197,5 +197,5 @@
 		}
 	};
 
-	window.Tock = Tock;
-}());
+	exports.Tock = Tock;
+}(typeof process !== 'undefined' && typeof process.title !== 'undefined' ? exports : window));
