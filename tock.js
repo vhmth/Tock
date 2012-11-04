@@ -1,3 +1,19 @@
+/* Tock: Timeout and interval javascript manager.
+ *
+ * Author: Vinay Hiremath
+ *         vhiremath4@gmail.com
+ *         www.vhmath.com
+ *
+ * Terms: There is no legitimate license associated with
+ *        Tock and I don't intend there to be. All I ask
+ *        is that you don't try to sell Tock to others
+ *        on its own. If you're simply using it as a tool
+ *        (even for a profitable website), that's cool with
+ *        me. Other than that, feel free to do whatever you
+ *        want with Tock. If you wish, you may also remove
+ *        this header. Code on broski.
+ */
+
 (function () {
 	var
 	    VER = '0.1',
