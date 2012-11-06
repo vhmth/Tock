@@ -14,7 +14,7 @@
  *        this header. Code on broski.
  */
 
-(function (namespace, root) {
+(function (namespace) {
 	'use strict';
 
 	var
@@ -56,14 +56,14 @@
 	};
 
 	function clockFired(id) {
-		root.console.log('Clock Fired: ' + id);
+		console.log('Clock Fired: ' + id);
 		if (!clockShop[id].isInterval) {
 			Tock.unwind(id);
 		}
 	}
 
 	function clearCountInterval(id) {
-		root.clearInterval(clockShop[id].countInterval);
+		clearInterval(clockShop[id].countInterval);
 	}
 
 	function wind(id, wait, isInterval) {
@@ -76,11 +76,11 @@
 	Tock = {
 		wind: function (fn, wait, id, context) {
 			if (id === undefined || id === '') {
-				root.console.error('You must specify a valid id when calling wind.');
+				console.error('You must specify a valid id when calling wind.');
 				return;
 			}
 			if (clockShop[id] !== undefined) {
-				root.console.warn('This id already has a clock associated with it.');
+				console.warn('This id already has a clock associated with it.');
 				return;
 			}
 			if (context !== undefined) {
@@ -89,12 +89,12 @@
 
 			wind(id, wait, false);
 
-			clockShop[id].timeout = root.setTimeout(function () {
+			clockShop[id].timeout = setTimeout(function () {
 				fn();
 				clockFired(id);
 			}, wait);
 
-			clockShop[id].countInterval = root.setInterval(function () {
+			clockShop[id].countInterval = setInterval(function () {
 				if (clockShop[id].secondsRun >= clockShop[id].wait) {
 					clearCountInterval(id);
 				}
@@ -109,17 +109,17 @@
 				return timeLeft / 1000;
 			};
 
-			root.console.log('Clock Wound: ' + id);
+			console.log('Clock Wound: ' + id);
 			idleJobs += 1;
 		},
 
 		windInterval: function (fn, wait, id, context) {
 			if (id === undefined || id === '') {
-				root.console.error('You must specify a valid id when calling windInterval.');
+				console.error('You must specify a valid id when calling windInterval.');
 				return;
 			}
 			if (clockShop[id] !== undefined) {
-				root.console.warn('This id already has a clock associated with it.');
+				console.warn('This id already has a clock associated with it.');
 				return;
 			}
 			if (context !== undefined) {
@@ -128,13 +128,13 @@
 
 			wind(id, wait, true);
 
-			clockShop[id].timeout = root.setInterval(function () {
+			clockShop[id].timeout = setInterval(function () {
 				clockShop[id].msRun = 0;
 				fn();
 				clockFired(id);
 			}, wait);
 
-			clockShop[id].countInterval = root.setInterval(function () {
+			clockShop[id].countInterval = setInterval(function () {
 				clockShop[id].msRun += 1000;
 			}, 1000);
 
@@ -146,7 +146,7 @@
 				return timeLeft / 1000;
 			};
 
-			root.console.log('Clock Wound: ' + id);
+			console.log('Clock Wound: ' + id);
 			idleJobs += 1;
 		},
 
@@ -162,18 +162,18 @@
 			var tick;
 
 			if (clockShop[id] === undefined) {
-				root.console.warn('Undefined id passed into clock. The timeout has either been fired or was not wound.');
+				console.warn('Undefined id passed into clock. The timeout has either been fired or was not wound.');
 			} else {
 				if (clockShop[id].isInterval) {
-					root.clearInterval(clockShop[id].timeout);
+					clearInterval(clockShop[id].timeout);
 				} else {
-					root.clearTimeout(clockShop[id].timeout);
+					clearTimeout(clockShop[id].timeout);
 				}
-				root.clearInterval(clockShop[id].countInterval);
+				clearInterval(clockShop[id].countInterval);
 				idleJobs -= 1;
 				completedJobs += 1;
 				delete clockShop[id];
-				root.console.log('Clock Unwound: ' + id);
+				console.log('Clock Unwound: ' + id);
 			}
 		},
 
@@ -208,7 +208,7 @@
 
 		destroy: function () {
 			this.unwindAll();
-			delete root.Tock;
+			delete namespace.Tock;
 		},
 
 		version: function () {
@@ -217,6 +217,5 @@
 	};
 
 	namespace.Tock = Tock;
-}((window.process !== undefined &&
-	window.process.title !== undefined &&
-	window.exports !== undefined) ? window.exports : window, window));
+}((this.process !== undefined && this.process.title !== undefined &&
+	this.exports !== undefined) ? this.exports : window));
