@@ -217,5 +217,5 @@
 	};
 
 	namespace.Tock = Tock;
-}((this.process !== undefined && this.process.title !== undefined &&
-	this.exports !== undefined) ? this.exports : window));
+}((typeof process !== 'undefined' && typeof process.title !== 'undefined' &&
+	typeof exports !== 'undefined') ? exports : window));
