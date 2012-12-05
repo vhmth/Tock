@@ -3,7 +3,7 @@ Tock
 
 Timeout and interval javascript manager.
 
-Tock in action: http://vhiremath4.github.com/Tock
+Tock in action: http://underpull.github.com/Tock
 
 Winding
 =======
