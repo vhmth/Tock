@@ -56,7 +56,7 @@
 	};
 
 	function clockFired(id) {
-		console.log('Clock Fired: ' + id);
+		// console.log('Clock Fired: ' + id);
 		if (!clockShop[id].isInterval) {
 			Tock.unwind(id);
 		}
@@ -76,11 +76,11 @@
 	Tock = {
 		wind: function (fn, wait, id, context) {
 			if (id === undefined || id === '') {
-				console.error('You must specify a valid id when calling wind.');
+				// console.error('You must specify a valid id when calling wind.');
 				return;
 			}
 			if (clockShop[id] !== undefined) {
-				console.warn('This id already has a clock associated with it.');
+				// console.warn('This id already has a clock associated with it.');
 				return;
 			}
 			if (context !== undefined) {
@@ -109,17 +109,17 @@
 				return timeLeft / 1000;
 			};
 
-			console.log('Clock Wound: ' + id);
+			// console.log('Clock Wound: ' + id);
 			idleJobs += 1;
 		},
 
 		windInterval: function (fn, wait, id, context) {
 			if (id === undefined || id === '') {
-				console.error('You must specify a valid id when calling windInterval.');
+				// console.error('You must specify a valid id when calling windInterval.');
 				return;
 			}
 			if (clockShop[id] !== undefined) {
-				console.warn('This id already has a clock associated with it.');
+				// console.warn('This id already has a clock associated with it.');
 				return;
 			}
 			if (context !== undefined) {
@@ -146,7 +146,7 @@
 				return timeLeft / 1000;
 			};
 
-			console.log('Clock Wound: ' + id);
+			// console.log('Clock Wound: ' + id);
 			idleJobs += 1;
 		},
 
@@ -162,7 +162,7 @@
 			var tick;
 
 			if (clockShop[id] === undefined) {
-				console.warn('Undefined id passed into clock. The timeout has either been fired or was not wound.');
+				// console.warn('Undefined id passed into clock. The timeout has either been fired or was not wound.');
 			} else {
 				if (clockShop[id].isInterval) {
 					clearInterval(clockShop[id].timeout);
@@ -173,7 +173,7 @@
 				idleJobs -= 1;
 				completedJobs += 1;
 				delete clockShop[id];
-				console.log('Clock Unwound: ' + id);
+				// console.log('Clock Unwound: ' + id);
 			}
 		},
 
